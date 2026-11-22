@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Pilot | Connect, Collaborate, Conquer</title>
+<meta name="description" content="The mission-based collaboration platform for university students. Match skills and launch real-world projects.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Project Pilot | Connect, Collaborate, Conquer">
+<meta property="og:description" content="Match your skills with student missions, build a crew, and ship portfolio-ready case studies.">
+<meta name="theme-color" content="#090b14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+:root{--bg:#090b14;--text:#eef0fb;--text-muted:#9ba1c2;--glass:rgba(255,255,255,.045);--glass-border:rgba(255,255,255,.1);--violet:#8b7cff;--coral:#ff7a59;--grad:linear-gradient(120deg,var(--violet),var(--coral));--r:18px;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
+.bg-gradient{position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 50% at 15% 10%,rgba(139,124,255,.28),transparent 70%),radial-gradient(50% 45% at 90% 20%,rgba(255,122,89,.16),transparent 70%),radial-gradient(60% 50% at 50% 100%,rgba(139,124,255,.14),transparent 70%),var(--bg)}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--r)}
+.muted{color:var(--text-muted)}
+.container{max-width:1120px;margin:0 auto;padding:110px 24px 60px}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:1120px;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 14px 10px 22px;border-radius:999px}
+.logo{font-weight:800;letter-spacing:.04em;font-size:1.05rem}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--text-muted);font-size:.92rem;font-weight:500;transition:.2s}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{background:rgba(255,255,255,.09);color:var(--text)}
+.btn{font:inherit;font-weight:600;font-size:.92rem;border:1px solid transparent;cursor:pointer;padding:11px 22px;border-radius:999px;color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--grad);color:#120d1f;box-shadow:0 8px 28px -8px rgba(255,122,89,.55)}
+.btn-primary:hover{box-shadow:0 10px 32px -6px rgba(255,122,89,.75)}
+.btn-ghost{background:var(--glass);border-color:var(--glass-border)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-sm{padding:8px 16px;font-size:.84rem}
+.btn:disabled{opacity:.55;cursor:default}
+.full{width:100%}
+:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+section{display:none}
+section.active{display:block}
+#hero{text-align:center;padding-top:7vh}
+#hero h1{font-size:clamp(2.6rem,8vw,5.4rem);font-weight:800;margin-bottom:24px}
+#hero .lead{color:var(--text-muted);font-size:clamp(1rem,2.2vw,1.2rem);max-width:600px;margin:0 auto 40px}
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:90px 0 24px;text-align:left}
+.step{padding:28px}
+.step i{color:var(--coral);width:28px;height:28px;margin-bottom:14px}
+.step h3{font-size:1.1rem;margin-bottom:8px}
+.step p{color:var(--text-muted);font-size:.93rem}
+.about-card{padding:clamp(28px,6vw,60px);max-width:900px;margin:40px auto 0}
+.about-card h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:22px}
+.about-card p{font-size:1.08rem;line-height:1.85;color:var(--text-muted);max-width:70ch}
+.about-card strong{color:var(--text);font-weight:600}
+.author-credit{margin-top:32px;padding-top:24px;border-top:1px solid var(--glass-border);color:var(--text-muted);font-size:.92rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.author-name{color:var(--text);font-weight:600}
+.share-btn{font:inherit;font-size:.88rem;font-weight:600;color:var(--text);background:var(--glass);border:1px solid var(--glass-border);padding:9px 18px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.share-btn:hover{background:rgba(255,255,255,.12)}
+.share-btn svg,.btn svg{width:17px;height:17px}
+.dash-head{display:flex;align-items:center;gap:28px;margin-bottom:36px;flex-wrap:wrap}
+.dash-head h2{font-size:clamp(1.8rem,4vw,2.5rem)}
+.profile-photo-container{position:relative;width:112px;height:112px;border-radius:50%;padding:3px;background:var(--grad);cursor:pointer;flex-shrink:0}
+.profile-photo-container img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:var(--bg)}
+.profile-photo-container::after{content:'Change';position:absolute;inset:3px;border-radius:50%;background:rgba(9,11,20,.65);display:grid;place-items:center;font-size:.8rem;font-weight:600;opacity:0;transition:.2s}
+.profile-photo-container:hover::after{opacity:1}
+.verified-badge{display:inline-flex;align-items:center;gap:6px;color:#6ee7b7;font-size:.9rem;margin-top:8px}
+.verified-badge svg{width:17px;height:17px}
+.panel{padding:clamp(22px,4vw,40px)}
+.panel h3{margin-bottom:22px;font-size:1.25rem}
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.form-group{margin-bottom:18px}
+.profile-grid .form-group{margin:0}
+.form-group label{display:block;font-size:.85rem;font-weight:500;color:var(--text-muted);margin-bottom:8px}
+.skill-input{font:inherit;font-size:.95rem;width:100%;padding:13px 16px;border-radius:12px;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--glass-border);transition:border-color .2s,background .2s}
+.skill-input::placeholder{color:#656b8c}
+.skill-input:focus{outline:none;border-color:var(--violet);background:rgba(255,255,255,.08)}
+.skill-input[readonly]{opacity:.6}
+textarea.skill-input{resize:vertical;min-height:100px}
+hr{border:none;border-top:1px solid var(--glass-border);margin:40px 0}
+.skill-input-container{display:flex;gap:12px;margin-bottom:20px}
+.skill-input-container .skill-input{flex:1}
+.skills-list,.tags{display:flex;flex-wrap:wrap;gap:10px}
+.skill-tag,.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:.84rem;font-weight:500;background:rgba(139,124,255,.14);border:1px solid rgba(139,124,255,.35);color:#cfc9ff}
+.tag.match{background:rgba(255,122,89,.15);border-color:rgba(255,122,89,.45);color:#ffc2b0}
+.skill-tag button{background:none;border:none;color:inherit;cursor:pointer;font-size:1.1rem;line-height:1;opacity:.7}
+.skill-tag button:hover{opacity:1}
+.empty{color:var(--text-muted);font-size:.93rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.two-col .glass{padding:30px}
+.two-col h3{margin-bottom:16px}
+.mini{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--glass-border)}
+.mini:first-of-type{border-top:none}
+.mini b{display:block;font-weight:600}
+.mini small{color:var(--text-muted)}
+.launch-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.launch-head h2{font-size:clamp(1.8rem,4vw,2.5rem)}
+#filter-status{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px;color:var(--text-muted);font-size:.92rem}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.project-card{padding:28px;display:flex;flex-direction:column;gap:14px;transition:transform .2s,border-color .2s}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(139,124,255,.5)}
+.project-card h3{font-size:1.2rem}
+.project-card p{color:var(--text-muted);font-size:.94rem;flex:1}
+.project-card .by{font-size:.82rem;color:var(--text-muted)}
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(5,6,12,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-content{position:relative;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:36px;background:#12152a;animation:pop .22s ease}
+.modal-content.wide{max-width:720px}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:18px;right:18px;cursor:pointer;color:var(--text-muted);width:36px;height:36px;display:grid;place-items:center;border-radius:50%}
+.modal-close:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.modal-content h2{margin-bottom:8px;font-size:1.7rem}
+.modal-content>p.muted{margin-bottom:26px}
+.form-error{color:#ff8a8a;font-size:.88rem;min-height:1.3em;margin-bottom:10px}
+.switch{text-align:center;margin-top:18px;color:var(--text-muted);font-size:.9rem}
+.switch a{color:var(--coral);cursor:pointer;font-weight:600}
+.case h4{margin:22px 0 8px;font-size:1rem}
+.case p{color:var(--text-muted)}
+.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,30px);background:#1b1f3a;border:1px solid var(--glass-border);padding:13px 22px;border-radius:999px;font-size:.92rem;opacity:0;pointer-events:none;transition:.3s;z-index:3000;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:var(--text-muted);font-size:.85rem;padding:30px 20px 40px}
+#net,#confetti{position:fixed;inset:0;pointer-events:none}
+#net{z-index:-1}#confetti{z-index:4000}
+.rolecall{font-size:clamp(1.05rem,2.4vw,1.35rem);font-weight:500;margin:-14px 0 34px;min-height:1.6em}
+.typed{color:var(--coral);font-weight:700}
+.typed::after{content:'';display:inline-block;width:2px;height:1.1em;margin-left:3px;background:var(--coral);vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.stats{display:flex;justify-content:center;gap:clamp(28px,7vw,80px);flex-wrap:wrap;margin-top:64px}
+.stats b{display:block;font-size:2.2rem;font-weight:800}
+.stats span{color:var(--text-muted);font-size:.9rem}
+.faq{max-width:720px;margin:70px auto 0;text-align:left}
+.faq h2{font-size:1.6rem;margin-bottom:18px}
+details{border-top:1px solid var(--glass-border);padding:16px 2px}
+details:last-child{border-bottom:1px solid var(--glass-border)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';color:var(--coral);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:'\2212'}
+details p{color:var(--text-muted);margin-top:10px;max-width:60ch}
+.toolbar{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.toolbar input{flex:1;min-width:220px;width:auto}.toolbar select{width:auto}
+select option{background:#12152a}
+.match{position:relative;height:26px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.match span{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,rgba(139,124,255,.5),rgba(255,122,89,.55));transition:width .6s}
+.match em{position:relative;font-style:normal;font-size:.78rem;font-weight:600;line-height:26px;padding-left:12px}
+.rank{padding:28px;margin-bottom:24px}
+.rank h3{font-size:1.5rem;margin:0 0 4px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;background:var(--grad);border-radius:99px;transition:width .5s}
+.tag.off{opacity:.4;background:none;border-color:var(--glass-border);color:var(--text-muted)}
+.act{padding:16px 0;border-top:1px solid var(--glass-border)}
+.act:first-child{border-top:none;padding-top:0}
+.ms{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-bottom:14px}
+.ck{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-muted);cursor:pointer}
+.ck input{accent-color:var(--coral);width:16px;height:16px}
+.person{padding:24px;display:flex;flex-direction:column;gap:14px}
+.person .who{display:flex;gap:14px;align-items:center}
+.person img{width:56px;height:56px;border-radius:50%}
+.person h3{font-size:1.1rem}
+.person .muted{font-size:.85rem}
+@media(max-width:820px){
+ nav{flex-wrap:wrap;border-radius:26px;padding:12px 16px}
+ .nav-links{order:3;width:100%;justify-content:center}
+ .container{padding-top:150px}
+ .steps,.two-col{grid-template-columns:1fr}
+}
+@media(max-width:480px){.skill-input-container{flex-direction:column}.nav-link{padding:8px 11px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<canvas id="net" aria-hidden="true"></canvas>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<nav class="glass">
+  <div class="logo gradient-text" onclick="showSection('hero')" style="cursor:pointer">PROJECT PILOT</div>
+  <div class="nav-links">
+    <span class="nav-link active" data-s="hero" onclick="showSection('hero')">Home</span>
+    <span class="nav-link" data-s="launchpad" onclick="showSection('launchpad')">Launchpad</span>
+    <span class="nav-link" data-s="crew" onclick="showSection('crew')">Crew</span>
+    <span class="nav-link" data-s="dashboard" onclick="navigateToDashboard()">My Dashboard</span>
+  </div>
+  <button class="btn btn-primary btn-sm" id="loginBtn">Sign In (.edu)</button>
+</nav>
+
+<main class="container">
+  <section id="hero" class="active">
+    <h1>Launch Your Next <br><span class="gradient-text">Mission.</span></h1>
+    <p class="lead">Connect with fellow university students, match your skills with open missions, and build a portfolio that stands out.</p>
+    <p class="rolecall">Your next teammate is a <span id="typed" class="typed"></span></p>
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="showSection('launchpad')">Explore Missions</button>
+      <button class="btn btn-ghost" onclick="navigateToDashboard()">Build Profile</button>
+    </div>
+    <div class="stats">
+      <div><b data-count="missions">0</b><span>open missions</span></div>
+      <div><b data-count="skills">0</b><span>skills in demand</span></div>
+      <div><b data-count="people">0</b><span>students to connect with</span></div>
+    </div>
+    <div class="steps">
+      <div class="glass step"><i data-lucide="user-round-check"></i><h3>Build your profile</h3><p>Verify with your university email and list the skills you bring.</p></div>
+      <div class="glass step"><i data-lucide="rocket"></i><h3>Join a mission</h3><p>The Launchpad surfaces projects that need exactly what you do.</p></div>
+      <div class="glass step"><i data-lucide="award"></i><h3>Ship a case study</h3><p>Finish a mission and get a portfolio piece you can share.</p></div>
+    </div>
+    <div class="faq">
+      <h2>Questions, answered</h2>
+      <details><summary>Who can join?</summary><p>Any student with a university email, such as .edu or .ac.in.</p></details>
+      <details><summary>How are missions matched to me?</summary><p>Each mission lists the skills it needs. Your Skill Arsenal is compared against them to give every mission a match score.</p></details>
+      <details><summary>What do I get for finishing a mission?</summary><p>XP toward your next rank, a badge, and a case study you can print or save as a PDF.</p></details>
+    </div>
+  </section>
+
+  <section id="about" class="active">
+    <div class="glass about-card">
+      <h2>About <span class="gradient-text">Project Pilot</span></h2>
+      <p>The mission of Project Pilot is to <strong>bridge the university experience gap</strong> by connecting talented students across disciplines. While textbooks provide the theory, we provide the launchpad for real-world collaboration. Whether you are a developer, designer, or marketer, your skills are needed to bring ambitious student missions to life.</p>
+      <div class="author-credit">
+        <span>Created by <span class="author-name">Shemeema Parambath</span></span>
+        <span style="display:flex;gap:10px;flex-wrap:wrap"><button class="share-btn" onclick="shareMission()"><i data-lucide="share-2"></i> Share Mission</button><button class="share-btn" onclick="shareLinkedIn()"><i data-lucide="linkedin"></i> Share on LinkedIn</button></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="crew">
+    <div class="launch-head">
+      <div><h2>Find your <span class="gradient-text">Crew</span></h2><p class="muted">Sample student profiles. Skills you share with them are highlighted.</p></div>
+      <input id="crewSearch" class="skill-input" style="max-width:290px" placeholder="Search by name, skill or major" aria-label="Search crew">
+    </div>
+    <div class="project-grid" id="crewGrid"></div>
+  </section>
+
+  <section id="dashboard">
+    <div class="dash-head">
+      <div class="profile-photo-container" onclick="document.getElementById('photoUpload').click()" title="Change photo">
+        <img id="profileImage" alt="Profile photo">
+        <input type="file" id="photoUpload" style="display:none" accept="image/*" onchange="handlePhotoUpload(this)">
+      </div>
+      <div>
+        <h2>Commander <span class="gradient-text" id="userDisplayName">Profile</span></h2>
+        <p class="verified-badge"><i data-lucide="shield-check"></i> Verified University Student (.edu)</p>
+      </div>
+    </div>
+
+    <div class="glass rank" id="rankCard"></div>
+
+    <div class="glass panel">
+      <h3>Commander Credentials</h3>
+      <div class="profile-grid">
+        <div class="form-group"><label for="profileFullName">Full Name</label><input type="text" id="profileFullName" class="skill-input" onchange="saveProfileField('fullName',this.value)"></div>
+        <div class="form-group"><label for="profileEmail">Email (Locked)</label><input type="email" id="profileEmail" class="skill-input" readonly></div>
+        <div class="form-group"><label for="profileUniversity">University</label><input type="text" id="profileUniversity" class="skill-input" onchange="saveProfileField('university',this.value)"></div>
+        <div class="form-group"><label for="profileMajor">Major</label><input type="text" id="profileMajor" class="skill-input" onchange="saveProfileField('major',this.value)"></div>
+        <div class="form-group"><label for="profileGradYear">Graduation Year</label><input type="number" id="profileGradYear" class="skill-input" placeholder="2027" onchange="saveProfileField('gradYear',this.value)"></div>
+        <div class="form-group"><label for="profileCountry">Country</label><input type="text" id="profileCountry" class="skill-input" onchange="saveProfileField('country',this.value)"></div>
+        <div class="form-group"><label for="profileDOB">Date of Birth</label><input type="date" id="profileDOB" class="skill-input" onchange="saveProfileField('dob',this.value)"></div>
+        <div class="form-group"><label for="profilePhone">Phone (Optional)</label><input type="tel" id="profilePhone" class="skill-input" onchange="saveProfileField('phone',this.value)"></div>
+      </div>
+      <hr>
+      <h3>Skill Arsenal</h3>
+      <div class="skill-input-container">
+        <input type="text" id="skillInput" class="skill-input" placeholder="Add skill (e.g. Python, UI/UX, Marketing)...">
+        <button class="btn btn-primary" onclick="addSkill()">Add Skill</button>
+      </div>
+      <div class="skills-list" id="skillsList"></div>
+    </div>
+
+    <div class="two-col">
+      <div class="glass"><h3>Active Missions</h3><div id="activeMissions"></div></div>
+      <div class="glass"><h3>Completed Projects</h3><div id="completedProjects"></div></div>
+    </div>
+  </section>
+
+  <section id="launchpad">
+    <div class="launch-head">
+      <div>
+        <h2>Open <span class="gradient-text">Missions</span></h2>
+        <p class="muted">Missions filtered by your Skill Arsenal</p>
+      </div>
+      <button class="btn btn-primary post-mission-btn" onclick="openMissionModal()"><i data-lucide="plus-circle"></i> Post a Mission</button>
+    </div>
+    <div class="toolbar">
+      <input id="missionSearch" class="skill-input" placeholder="Search missions or skills" aria-label="Search missions">
+      <select id="missionSort" class="skill-input" aria-label="Sort missions"><option value="best">Best match</option><option value="new">Newest first</option></select>
+    </div>
+    <div id="filter-status"></div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+</main>
+
+<footer>Project Pilot · Built for student collaborators</footer>
+
+<!-- Case study -->
+<div id="portfolioModal" class="modal-overlay">
+  <div class="glass modal-content wide">
+    <div class="modal-close" onclick="closePortfolio()"><i data-lucide="x"></i></div>
+    <div id="portfolioContent" class="case"></div>
+  </div>
+</div>
+
+<!-- Sign in -->
+<div id="loginModalOverlay" class="modal-overlay">
+  <div class="glass modal-content" id="modalAuthContent"></div>
+</div>
+
+<!-- Post a mission -->
+<div id="missionModalOverlay" class="modal-overlay">
+  <div class="glass modal-content">
+    <div class="modal-close" onclick="closeMissionModal()"><i data-lucide="x"></i></div>
+    <h2>Launch <span class="gradient-text">New Mission</span></h2>
+    <p class="muted">Describe your project and find your dream team.</p>
+    <div class="form-group"><label for="missionName">Project Name</label><input type="text" id="missionName" class="skill-input" placeholder="e.g. Lunar UI Library"></div>
+    <div class="form-group"><label for="missionGoal">Brief Idea / Goal</label><textarea id="missionGoal" class="skill-input" placeholder="What are you building?"></textarea></div>
+    <div class="form-group"><label for="missionSkills">Required Skills (comma separated)</label><input type="text" id="missionSkills" class="skill-input" placeholder="e.g. CSS Expert, React, Python"></div>
+    <p class="form-error" id="missionError"></p>
+    <button class="btn btn-primary full" onclick="launchMission()">Launch Mission</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icons = () => { try { window.lucide && lucide.createIcons(); } catch (e) {} };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('pp_' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('pp_' + k, JSON.stringify(v)); } catch (e) {} }
+};
+
+const SEED = [
+  {id: 's1', name: 'Campus Eats App', goal: 'A mobile app that shows live canteen menus and queue times across campus.', skills: ['React', 'UI/UX', 'Firebase'], author: 'Aisha K.'},
+  {id: 's2', name: 'Lunar UI Library', goal: 'An open-source component library with a space-inspired design system.', skills: ['CSS', 'JavaScript', 'Figma'], author: 'Marcus T.'},
+  {id: 's3', name: 'Green Campus Campaign', goal: 'Plan and run a semester-long sustainability campaign with social media content.', skills: ['Marketing', 'Copywriting', 'Video Editing'], author: 'Priya R.'},
+  {id: 's4', name: 'Study Group Matcher', goal: 'A data-driven tool that pairs students into study groups by course and schedule.', skills: ['Python', 'Data Analysis', 'SQL'], author: 'Daniel O.'},
+  {id: 's5', name: 'Alumni Story Podcast', goal: 'Record and produce a podcast series of alumni career stories.', skills: ['Audio Editing', 'Writing', 'Marketing'], author: 'Sara L.'}
+];
+
+let user = store.get('user', null);
+let loggedIn = store.get('session', false) && !!user;
+let skills = store.get('skills', []);
+let missions = store.get('missions', SEED);
+let joined = store.get('joined', []);
+let done = store.get('done', []);
+let onlyMine = true, pendingSection = null;
+
+/* ---------- Navigation ---------- */
+function showSection(id) {
+  ['hero', 'crew', 'dashboard', 'launchpad'].forEach(s => $(s).classList.toggle('active', s === id));
+  $('about').classList.toggle('active', id === 'hero');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.s === id));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (id === 'launchpad') renderMissions();
+  if (id === 'crew') renderCrew();
+  if (id === 'hero') runCounters();
+  if (id === 'dashboard') renderDashboard();
+  icons();
+}
+function navigateToDashboard() {
+  if (!loggedIn) { openLogin('signin', 'dashboard'); return; }
+  showSection('dashboard');
+}
+
+/* ---------- Toast ---------- */
+let toastTimer;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ---------- Auth ---------- */
+const EDU = /^[^\s@]+@[^\s@]+\.(edu|ac)(\.[a-z]{2,3})?$/i;
+function openLogin(mode = 'signin', after = null) {
+  pendingSection = after; toggleLoginView(mode);
+  $('loginModalOverlay').classList.add('open');
+  setTimeout(() => ($('authName') || $('authEmail'))?.focus(), 50);
+}
+function closeLogin() { $('loginModalOverlay').classList.remove('open'); }
+function toggleLoginView(mode) {
+  const up = mode === 'signup';
+  $('modalAuthContent').innerHTML = `
+    <div class="modal-close" onclick="closeLogin()"><i data-lucide="x"></i></div>
+    <h2>${up ? 'Create your' : 'Welcome'} <span class="gradient-text">${up ? 'account' : 'back'}</span></h2>
+    <p class="muted">${up ? 'Use your university email to join missions and build your profile.' : 'Sign in with your university email.'}</p>
+    ${up ? '<div class="form-group"><label for="authName">Full Name</label><input id="authName" class="skill-input" placeholder="Your name"></div>' : ''}
+    <div class="form-group"><label for="authEmail">University email</label><input id="authEmail" type="email" class="skill-input" placeholder="you@university.edu"></div>
+    <p class="form-error" id="authError"></p>
+    <button class="btn btn-primary full" onclick="submitAuth('${mode}')">${up ? 'Create account' : 'Sign in'}</button>
+    <p class="switch">${up ? 'Already have an account?' : 'New here?'} <a onclick="toggleLoginView('${up ? 'signin' : 'signup'}')">${up ? 'Sign in' : 'Create one'}</a></p>`;
+  $('modalAuthContent').querySelectorAll('input').forEach(i => i.addEventListener('keydown', e => e.key === 'Enter' && submitAuth(mode)));
+  icons();
+}
+function submitAuth(mode) {
+  const email = $('authEmail').value.trim().toLowerCase();
+  const err = m => { $('authError').textContent = m; };
+  if (!EDU.test(email)) return err('Enter a valid university email, such as name@college.edu or name@college.ac.in.');
+  if (mode === 'signup') {
+    const name = $('authName').value.trim();
+    if (name.length < 2) return err('Enter your full name.');
+    user = {fullName: name, email};
+    store.set('user', user);
+  } else if (!user || user.email !== email) {
+    return err('No account found for this email. Create one below.');
+  }
+  loggedIn = true; store.set('session', true);
+  closeLogin(); updateAuthUI(); fillProfile();
+  toast('Welcome aboard, ' + user.fullName.split(' ')[0] + '!');
+  if (pendingSection) { showSection(pendingSection); pendingSection = null; } else if ($('launchpad').classList.contains('active')) renderMissions();
+}
+function signOut() {
+  loggedIn = false; store.set('session', false);
+  updateAuthUI(); showSection('hero'); toast('Signed out.');
+}
+function updateAuthUI() { $('loginBtn').textContent = loggedIn ? 'Sign Out' : 'Sign In (.edu)'; }
+$('loginBtn').addEventListener('click', () => loggedIn ? signOut() : openLogin('signin'));
+function requireLogin(after) { if (loggedIn) return true; openLogin('signin', after); toast('Sign in to continue.'); return false; }
+
+/* ---------- Profile ---------- */
+const FIELDS = {fullName: 'profileFullName', email: 'profileEmail', university: 'profileUniversity', major: 'profileMajor', gradYear: 'profileGradYear', country: 'profileCountry', dob: 'profileDOB', phone: 'profilePhone'};
+function avatar(name) {
+  const l = esc((name || 'C').trim()[0]?.toUpperCase() || 'C');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7cff"/><stop offset="1" stop-color="#ff7a59"/></linearGradient></defs><rect width="120" height="120" fill="url(#g)"/><text x="60" y="78" font-family="Arial" font-size="56" font-weight="700" fill="#120d1f" text-anchor="middle">${l}</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function fillProfile() {
+  const u = user || {};
+  Object.entries(FIELDS).forEach(([k, id]) => { $(id).value = u[k] || ''; });
+  $('userDisplayName').textContent = (u.fullName || '').split(' ')[0] || 'Profile';
+  $('profileImage').src = u.photo || avatar(u.fullName);
+}
+function saveProfileField(k, v) {
+  if (!user) return;
+  user[k] = v.trim(); store.set('user', user);
+  if (k === 'fullName') { $('userDisplayName').textContent = user.fullName.split(' ')[0] || 'Profile'; if (!user.photo) $('profileImage').src = avatar(user.fullName); }
+  toast('Saved.');
+}
+function handlePhotoUpload(input) {
+  const f = input.files && input.files[0];
+  if (!f || !user) return;
+  if (!f.type.startsWith('image/')) return toast('Choose an image file.');
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const s = 240, c = document.createElement('canvas'); c.width = c.height = s;
+      const m = Math.min(img.width, img.height);
+      c.getContext('2d').drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s);
+      user.photo = c.toDataURL('image/jpeg', .85); store.set('user', user);
+      $('profileImage').src = user.photo; toast('Photo updated.');
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(f); input.value = '';
+}
+
+/* ---------- Skills ---------- */
+function addSkill() {
+  const inp = $('skillInput'), v = inp.value.trim();
+  if (!v) return toast('Type a skill first.');
+  if (skills.some(s => s.toLowerCase() === v.toLowerCase())) return toast('You already added that skill.');
+  skills.push(v); store.set('skills', skills); inp.value = ''; renderSkills();
+}
+function removeSkill(i) { skills.splice(i, 1); store.set('skills', skills); renderSkills(); }
+function renderSkills() {
+  $('skillsList').innerHTML = skills.length
+    ? skills.map((s, i) => `<span class="skill-tag">${esc(s)}<button onclick="removeSkill(${i})" aria-label="Remove ${esc(s)}">&times;</button></span>`).join('')
+    : '<p class="empty">No skills yet. Add your first one above to unlock matched missions.</p>';
+}
+$('skillInput').addEventListener('keydown', e => { if (e.key === 'Enter') addSkill(); });
+
+/* ---------- Missions ---------- */
+const matches = (req, mine) => mine.some(m => { m = m.toLowerCase(); req = req.toLowerCase(); return m.includes(req) || req.includes(m); });
+function renderMissions() {
+  const filtering = onlyMine && skills.length > 0;
+  let list = filtering ? missions.filter(m => m.skills.some(s => matches(s, skills))) : missions.slice();
+  const qq = q.trim().toLowerCase();
+  if (qq) list = list.filter(m => (m.name + ' ' + m.goal + ' ' + m.skills.join(' ')).toLowerCase().includes(qq));
+  if (sortBy === 'best') list.sort((a, b) => score(b) - score(a));
+  $('filter-status').innerHTML = skills.length
+    ? `<span>${filtering ? `Showing ${list.length} of ${missions.length} missions that match your skills` : `Showing all ${missions.length} missions`}</span>
+       <button class="btn btn-ghost btn-sm" onclick="toggleFilter()">${filtering ? 'Show all missions' : 'Match my skills'}</button>`
+    : `<span>Add skills in your dashboard to see missions matched to you.</span>`;
+  $('projectGrid').innerHTML = list.length ? list.map(m => {
+    const isJoined = joined.includes(m.id), isDone = done.some(d => d.id === m.id);
+    return `<article class="glass project-card">
+      <h3>${esc(m.name)}</h3><p>${esc(m.goal)}</p>
+      <div class="tags">${m.skills.map(s => `<span class="tag ${matches(s, skills) ? 'match' : ''}">${esc(s)}</span>`).join('')}</div>
+      ${matchBar(m)}<div class="by">Posted by ${esc(m.author)}</div>
+      <button class="btn ${isJoined || isDone ? 'btn-ghost' : 'btn-primary'}" ${isJoined || isDone ? 'disabled' : ''} onclick="joinMission('${m.id}')">${isDone ? 'Completed' : isJoined ? 'Joined' : 'Join Mission'}</button>
+    </article>`;
+  }).join('') : '<p class="empty">No missions match your skills yet. Show all missions or post your own.</p>';
+  icons();
+}
+function toggleFilter() { onlyMine = !onlyMine; renderMissions(); }
+function joinMission(id) {
+  if (!requireLogin('launchpad')) return;
+  if (!joined.includes(id)) { joined.push(id); store.set('joined', joined); }
+  renderMissions(); toast('Mission joined. Find it in your dashboard.');
+}
+function openMissionModal() { if (!requireLogin('launchpad')) return; $('missionModalOverlay').classList.add('open'); setTimeout(() => $('missionName').focus(), 50); }
+function closeMissionModal() { $('missionModalOverlay').classList.remove('open'); }
+function launchMission() {
+  const name = $('missionName').value.trim(), goal = $('missionGoal').value.trim();
+  const req = $('missionSkills').value.split(',').map(s => s.trim()).filter(Boolean);
+  if (!name || !goal || !req.length) { $('missionError').textContent = 'Add a project name, a goal, and at least one required skill.'; return; }
+  $('missionError').textContent = '';
+  missions.unshift({id: 'm' + Date.now(), name, goal, skills: req, author: user.fullName, mine: true});
+  store.set('missions', missions);
+  ['missionName', 'missionGoal', 'missionSkills'].forEach(i => $(i).value = '');
+  closeMissionModal(); onlyMine = false; renderMissions(); toast('Mission launched!');
+}
+
+/* ---------- Dashboard ---------- */
+function renderDashboard() {
+  renderRank();
+  renderSkills();
+  const active = missions.filter(m => joined.includes(m.id));
+  $('activeMissions').innerHTML = active.length ? active.map(activeCard).join('')
+    : '<p class="empty">No active missions. Join one from the Launchpad.</p>';
+  $('completedProjects').innerHTML = done.length ? done.map(d => `<div class="mini"><div><b>${esc(d.name)}</b><small>Completed ${esc(d.date)}</small></div><button class="btn btn-ghost btn-sm" onclick="viewCaseStudy('${d.id}')">View case study</button></div>`).join('')
+    : '<p class="empty">Finish a mission to generate your first case study.</p>';
+  icons();
+}
+function completeMission(id) {
+  const m = missions.find(x => x.id === id); if (!m) return;
+  joined = joined.filter(j => j !== id); store.set('joined', joined);
+  done.push({...m, date: new Date().toLocaleDateString(undefined, {year: 'numeric', month: 'short', day: 'numeric'})});
+  store.set('done', done); renderDashboard(); confetti(); toast('Mission complete! +100 XP and a new case study.');
+}
+function viewCaseStudy(id) {
+  const d = done.find(x => x.id === id); if (!d) return;
+  $('portfolioContent').innerHTML = `
+    <h2>${esc(d.name)}</h2>
+    <p>Completed ${esc(d.date)}${user?.university ? ' · ' + esc(user.university) : ''}</p>
+    <h4>The mission</h4><p>${esc(d.goal)}</p>
+    <h4>Skills applied</h4><div class="tags">${d.skills.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div>
+    <h4>Contributor</h4><p>${esc(user?.fullName || '')}${user?.major ? ', ' + esc(user.major) : ''}, working with ${esc(d.author)}.</p>
+    <div style="margin-top:28px"><button class="btn btn-primary btn-sm" onclick="window.print()">Print or save as PDF</button></div>`;
+  $('portfolioModal').classList.add('open'); icons();
+}
+function closePortfolio() { $('portfolioModal').classList.remove('open'); }
+
+/* ---------- Share ---------- */
+async function shareMission() {
+  const data = {title: 'Project Pilot', text: 'Connect, collaborate, conquer. Join student missions on Project Pilot.', url: location.href};
+  try { if (navigator.share) { await navigator.share(data); return; } } catch (e) { if (e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(location.href); }
+  catch (e) { const t = document.createElement('textarea'); t.value = location.href; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (_) {} t.remove(); }
+  toast('Link copied! Share the mission with your friends.');
+}
+
+/* ---------- Modals: click outside / Escape ---------- */
+document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('mousedown', e => { if (e.target === o) o.classList.remove('open'); }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => o.classList.remove('open')); });
+
+/* ---------- Match score, search, sort ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let q = '', sortBy = 'best';
+const score = m => skills.length ? Math.round(100 * m.skills.filter(s => matches(s, skills)).length / m.skills.length) : 0;
+const matchBar = m => skills.length ? `<div class="match" title="How well your skills fit"><span style="width:${score(m)}%"></span><em>${score(m)}% match</em></div>` : '';
+$('missionSearch').addEventListener('input', e => { q = e.target.value; renderMissions(); });
+$('missionSort').addEventListener('change', e => { sortBy = e.target.value; renderMissions(); });
+
+/* ---------- Milestones on active missions ---------- */
+const MS = ['Kickoff call', 'Prototype', 'Team review', 'Launch'];
+let prog = store.get('prog', {});
+const pct = id => Math.round(100 * (prog[id] || []).filter(Boolean).length / MS.length);
+function activeCard(m) {
+  const p = prog[m.id] || [], all = pct(m.id) === 100;
+  return `<div class="act"><div class="row"><b>${esc(m.name)}</b><span class="muted">${pct(m.id)}%</span></div>
+    <div class="bar"><i style="width:${pct(m.id)}%"></i></div>
+    <div class="ms">${MS.map((t, i) => `<label class="ck"><input type="checkbox" ${p[i] ? 'checked' : ''} onchange="toggleMs('${m.id}',${i})">${t}</label>`).join('')}</div>
+    <button class="btn ${all ? 'btn-primary' : 'btn-ghost'} btn-sm" ${all ? '' : 'disabled'} onclick="completeMission('${m.id}')">${all ? 'Complete mission' : 'Tick every milestone to finish'}</button></div>`;
+}
+function toggleMs(id, i) { const p = prog[id] || (prog[id] = MS.map(() => false)); p[i] = !p[i]; store.set('prog', prog); renderDashboard(); }
+
+/* ---------- Crew ---------- */
+const PEOPLE = [
+  {id: 'p1', name: 'Aisha Khan', uni: 'IIT Madras', major: 'Computer Science', skills: ['React', 'Node.js', 'Firebase']},
+  {id: 'p2', name: 'Marcus Tan', uni: 'NUS', major: 'Design', skills: ['Figma', 'UI/UX', 'CSS']},
+  {id: 'p3', name: 'Priya Raman', uni: 'University of Kerala', major: 'Mass Communication', skills: ['Marketing', 'Copywriting', 'Video Editing']},
+  {id: 'p4', name: 'Daniel Osei', uni: 'University of Ghana', major: 'Statistics', skills: ['Python', 'Data Analysis', 'SQL']},
+  {id: 'p5', name: 'Sara Lindqvist', uni: 'Lund University', major: 'Journalism', skills: ['Writing', 'Audio Editing', 'Research']},
+  {id: 'p6', name: 'Rahul Menon', uni: 'NIT Calicut', major: 'Electronics', skills: ['Arduino', 'Python', '3D Printing']},
+  {id: 'p7', name: 'Lena Fischer', uni: 'TU Munich', major: 'Business', skills: ['Product Management', 'Marketing', 'Pitching']},
+  {id: 'p8', name: 'Omar Haddad', uni: 'AUB', major: 'Computer Engineering', skills: ['JavaScript', 'Machine Learning', 'Python']}
+];
+let crew = store.get('crew', []), cq = '';
+function renderCrew() {
+  const t = cq.trim().toLowerCase();
+  const list = PEOPLE.filter(p => !t || (p.name + ' ' + p.major + ' ' + p.uni + ' ' + p.skills.join(' ')).toLowerCase().includes(t));
+  $('crewGrid').innerHTML = list.map(p => { const on = crew.includes(p.id); return `<article class="glass person">
+    <div class="who"><img src="${avatar(p.name)}" alt=""><div><h3>${esc(p.name)}</h3><p class="muted">${esc(p.major)}, ${esc(p.uni)}</p></div></div>
+    <div class="tags">${p.skills.map(s => `<span class="tag ${matches(s, skills) ? 'match' : ''}">${esc(s)}</span>`).join('')}</div>
+    <button class="btn ${on ? 'btn-ghost' : 'btn-primary'} btn-sm" onclick="connect('${p.id}')">${on ? 'In your crew' : 'Add to crew'}</button></article>`; }).join('')
+    || '<p class="empty">No one matches that search. Try a skill like Python or Figma.</p>';
+}
+function connect(id) {
+  if (!requireLogin('crew')) return;
+  crew = crew.includes(id) ? crew.filter(c => c !== id) : crew.concat(id);
+  store.set('crew', crew); renderCrew();
+  toast(crew.includes(id) ? 'Added to your crew. +10 XP' : 'Removed from your crew.');
+}
+$('crewSearch').addEventListener('input', e => { cq = e.target.value; renderCrew(); });
+
+/* ---------- XP, ranks, badges ---------- */
+const RANKS = [['Cadet', 0], ['Navigator', 60], ['Pilot', 150], ['Commander', 300]];
+function profilePct() {
+  const keys = Object.keys(FIELDS), f = keys.filter(k => user && user[k]).length + (user && user.photo ? 1 : 0) + (skills.length ? 1 : 0);
+  return Math.round(100 * f / (keys.length + 2));
+}
+function stats() {
+  const posted = missions.filter(m => m.mine).length;
+  return {posted, xp: skills.length * 10 + joined.length * 20 + done.length * 100 + posted * 30 + crew.length * 10 + Math.round(profilePct() / 5)};
+}
+const BADGES = [['First skill', () => skills.length >= 1], ['Skill stack', () => skills.length >= 5], ['Launcher', s => s.posted > 0], ['Crew up', () => crew.length > 0], ['Mission complete', () => done.length > 0], ['Full profile', () => profilePct() === 100]];
+function renderRank() {
+  const s = stats(), i = RANKS.reduce((a, r, k) => s.xp >= r[1] ? k : a, 0), nx = RANKS[i + 1];
+  const pc = nx ? Math.round(100 * (s.xp - RANKS[i][1]) / (nx[1] - RANKS[i][1])) : 100;
+  $('rankCard').innerHTML = `<div class="row"><div><h3>${RANKS[i][0]}</h3><p class="muted">${s.xp} XP${nx ? ', ' + (nx[1] - s.xp) + ' XP to ' + nx[0] : ', top rank reached'}</p></div><div class="muted">Profile ${profilePct()}% complete</div></div>
+    <div class="bar"><i style="width:${pc}%"></i></div>
+    <div class="tags">${BADGES.map(([n, f]) => `<span class="tag ${f(s) ? 'match' : 'off'}">${n}</span>`).join('')}</div>`;
+}
+
+/* ---------- Hero: typewriter and counters ---------- */
+const WORDS = ['developer', 'designer', 'marketer', 'writer', 'data analyst', 'video editor'];
+function typer() {
+  const el = $('typed'); if (reduce) { el.textContent = WORDS[0]; return; }
+  let w = 0, c = 0, del = false;
+  (function tick() {
+    const word = WORDS[w]; c += del ? -1 : 1; el.textContent = word.slice(0, c);
+    let d = del ? 40 : 90;
+    if (!del && c === word.length) { del = true; d = 1400; } else if (del && c === 0) { del = false; w = (w + 1) % WORDS.length; d = 300; }
+    setTimeout(tick, d);
+  })();
+}
+function runCounters() {
+  const vals = {missions: missions.length, people: PEOPLE.length, skills: new Set(missions.flatMap(m => m.skills).concat(PEOPLE.flatMap(p => p.skills)).map(x => x.toLowerCase())).size};
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const end = vals[el.dataset.count]; if (reduce) { el.textContent = end; return; }
+    const t0 = performance.now();
+    (function f(t) { const k = Math.min(1, (t - t0) / 1100); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
+  });
+}
+
+/* ---------- Constellation background: students connecting ---------- */
+function initNet() {
+  const cv = $('net'), cx = cv.getContext('2d'), m = {x: -999, y: -999}; let W, H, pts = [];
+  const size = () => {
+    const r = devicePixelRatio || 1; W = innerWidth; H = innerHeight; cv.width = W * r; cv.height = H * r; cx.setTransform(r, 0, 0, r, 0, 0);
+    pts = Array.from({length: Math.min(80, Math.round(W * H / 16000))}, () => ({x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35}));
+  };
+  size(); addEventListener('resize', size);
+  addEventListener('pointermove', e => { m.x = e.clientX; m.y = e.clientY; });
+  (function draw() {
+    cx.clearRect(0, 0, W, H); cx.fillStyle = 'rgba(180,170,255,.7)';
+    for (const p of pts) {
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      cx.beginPath(); cx.arc(p.x, p.y, 1.6, 0, 6.283); cx.fill();
+    }
+    const all = pts.concat([m]);
+    for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
+      const a = all[i], b = all[j], hot = a === m || b === m, lim = hot ? 170 : 120, d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < lim) { cx.strokeStyle = hot ? `rgba(255,122,89,${.6 * (1 - d / lim)})` : `rgba(139,124,255,${.28 * (1 - d / lim)})`; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); }
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  })();
+}
+
+/* ---------- Confetti on mission complete ---------- */
+function confetti() {
+  if (reduce) return;
+  const cv = $('confetti'), cx = cv.getContext('2d'), cols = ['#8b7cff', '#ff7a59', '#6ee7b7', '#ffd166']; cv.width = innerWidth; cv.height = innerHeight;
+  const ps = Array.from({length: 120}, () => ({x: innerWidth / 2, y: innerHeight * .6, vx: (Math.random() - .5) * 16, vy: -Math.random() * 15 - 4, s: 4 + Math.random() * 5, c: cols[Math.random() * 4 | 0], r: Math.random() * 6}));
+  let n = 0;
+  (function f() {
+    cx.clearRect(0, 0, cv.width, cv.height);
+    ps.forEach(p => { p.vy += .4; p.x += p.vx; p.y += p.vy; p.r += .2; cx.fillStyle = p.c; cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .6); cx.restore(); });
+    if (++n < 130) requestAnimationFrame(f); else cx.clearRect(0, 0, cv.width, cv.height);
+  })();
+}
+
+/* ---------- Share on LinkedIn ---------- */
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href), '_blank', 'noopener'); }
+
+/* ---------- Init ---------- */
+toggleLoginView('signin'); fillProfile(); renderSkills(); updateAuthUI(); initNet(); typer(); runCounters(); icons();
+</script>
+</body>
+</html>
